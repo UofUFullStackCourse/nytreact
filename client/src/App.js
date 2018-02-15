@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import Search from './components/Search';
+import Jumbotron from './components/Jumbotron';
 
 class App extends Component {
     constructor(props) {
@@ -20,7 +20,10 @@ class App extends Component {
 
     render() {
         return (
-            <Search onSearchTermChange={term => this.articleSearch(term)} />
+            <div>
+            <Jumbotron children={"NYT Articles"}/>
+            <Search />
+            </div>
         );
     }
 }
