@@ -1,13 +1,13 @@
 {
-  "name": "nytreactclient",
-  "version": "1.0.0",
+  "name": "client2",
+  "version": "0.1.0",
   "private": true,
   "author": "Curt Lytle",
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.14"
+    "react-scripts": "1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
