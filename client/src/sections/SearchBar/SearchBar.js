@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./SearchBar.css";
+import API from "../../utils/API";
 import { Input, SearchButton } from "../../components/SearchForms";
 
 class Search extends Component {
@@ -18,12 +19,29 @@ class Search extends Component {
         });
     };
 
+    searchNYT = query => {
+        API.searchNYT(query)
+            .then(res => {
+                console.log(res.data);
+                let articles = [];
+                for (let i=0; i < 5; i++) {
+                   let art = {
+                       title: res.data.response.docs[i].headline.main,
+                       url: res.data.response.docs[i].web_url
+                    };
+
+                   articles.push(art);
+                }
+                this.props.callbackFromParent(articles);
+            })
+            .catch(err => console.log(err));
+    };
+
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.searchTerm) {
             console.log(".... do search for: " + this.state.searchTerm);
-            let articles = [{title:"test Title 222", url: "http://www.test.com"},{title: "Row article 2", url: "http://hello"}];
-            this.props.callbackFromParent(articles);
+            this.searchNYT(this.state.searchTerm);
             /*
             API.saveBook({
                 title: this.state.title,
