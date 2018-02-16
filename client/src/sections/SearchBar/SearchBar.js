@@ -27,7 +27,9 @@ class Search extends Component {
                 for (let i=0; i < 5; i++) {
                    let art = {
                        title: res.data.response.docs[i].headline.main,
-                       url: res.data.response.docs[i].web_url
+                       url: res.data.response.docs[i].web_url,
+                       snippet: res.data.response.docs[i].snippet,
+                       nytid: res.data.response.docs[i]._id
                     };
 
                    articles.push(art);

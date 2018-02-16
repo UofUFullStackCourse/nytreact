@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "./SearchResults.css";
 import {Col, Row, Container} from "../../components/Grid";
+import Jumbotron from "../../components/Jumbotron";
 
 class SearchResults extends Component {
     constructor(props) {
@@ -17,19 +18,24 @@ class SearchResults extends Component {
     }
 
     render() {
-        return (<div><Container fluid>
+        return (
+            <Container fluid>
+            <Jumbotron>
+                <p>Search Results</p>
+            </Jumbotron>
             {
                 this.state.articles.map((article, index) => (
                     <Row key={index}>
-                        <Col size="md-6">
-                            {article.title}
+                        <Col fluid size="md-8">
+                            <a data-id={article.nytid} href={article.url} target="_blank">{article.title}</a>
+                            <p>{article.snippet}</p>
                         </Col>
-                        <Col size="md-6">
-                            {article.url}
+                        <Col size="md-4">
+                           button goes here
                         </Col>
                     </Row>
                 ))}
-        </Container></div>);
+        </Container>);
     }
 }
 
