@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import Search from './components/Search';
+import SearchBar from './sections/SearchBar';
+import SearchResults from './sections/SearchResults';
 import Jumbotron from './components/Jumbotron';
 
 class App extends Component {
@@ -9,20 +10,22 @@ class App extends Component {
         super(props);
 
         this.state = {
-            articles: []
+            search_articles: [],
+            tempText: ''
         }
     }
 
-    articleSearch(term) {
-        //console.log(".... term to search...");
-        //console.log(term);
-    }
+    getResults = (results) => {
+        console.log("... in myCallback with: " + results);
+        this.setState({search_articles: results})
+    };
 
     render() {
         return (
             <div>
             <Jumbotron children={"NYT Articles"}/>
-            <Search />
+            <SearchBar callbackFromParent={this.getResults} />
+            <SearchResults searchResults={this.state.search_articles} />
             </div>
         );
     }
