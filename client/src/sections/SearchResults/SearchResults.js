@@ -2,19 +2,36 @@ import React, {Component} from "react";
 import "./SearchResults.css";
 import {Col, Row, Container} from "../../components/Grid";
 import Jumbotron from "../../components/Jumbotron";
+import {SaveButton} from "./SaveButton";
+import API from "../../utils/API";
 
 class SearchResults extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            articles: [],
-            text: ''
+            articles: []
         };
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({articles: nextProps.searchResults});
+    }
+
+
+    saveArticle(article) {
+        console.log("... clicked saving article:");
+        console.log(article);
+        let arts = this.state.articles;
+        let index = arts.indexOf(article);
+        if (index > -1) {
+            arts.splice(index, 1);
+        }
+        API.saveArticle(article)
+            .then(res => {
+                this.setState({articles: arts});
+            })
+            .catch(err => console.log(err));
     }
 
     render() {
@@ -31,7 +48,9 @@ class SearchResults extends Component {
                             <p>{article.snippet}</p>
                         </Col>
                         <Col size="md-4">
-                           button goes here
+                            <SaveButton onClick={() => this.saveArticle(article) }>
+                                Save
+                            </SaveButton>
                         </Col>
                     </Row>
                 ))}

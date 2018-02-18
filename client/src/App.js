@@ -10,22 +10,23 @@ class App extends Component {
         super(props);
 
         this.state = {
-            search_articles: [],
-            tempText: ''
+            searchedArticles: []
         }
     }
 
     getResults = (results) => {
-        console.log("... in myCallback with: " + results);
-        this.setState({search_articles: results})
+        //console.log("... in myCallback with: " + results);
+        this.setState({searchedArticles: results})
     };
 
     render() {
         return (
             <div>
-            <Jumbotron children={"NYT Articles"}/>
-            <SearchBar callbackFromParent={this.getResults} />
-            <SearchResults searchResults={this.state.search_articles} />
+                <Jumbotron>
+                    <p>NYT Article Search and Save</p>
+                </Jumbotron>
+                <SearchBar callbackFromParent={this.getResults}/>
+                <SearchResults searchResults={this.state.searchedArticles}/>
             </div>
         );
     }
