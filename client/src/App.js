@@ -4,6 +4,7 @@ import './App.css';
 import SearchBar from './sections/SearchBar';
 import SearchResults from './sections/SearchResults';
 import Jumbotron from './components/Jumbotron';
+import SavedArticles from "./sections/SavedArticles/SavedArticles";
 
 class App extends Component {
     constructor(props) {
@@ -27,6 +28,7 @@ class App extends Component {
                 </Jumbotron>
                 <SearchBar callbackFromParent={this.getResults}/>
                 <SearchResults searchResults={this.state.searchedArticles}/>
+                <SavedArticles/>
             </div>
         );
     }
