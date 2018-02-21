@@ -47,24 +47,30 @@ class SearchResults extends Component {
     render() {
         return (
             <Container fluid>
-            <Jumbotron>
-                <p>Search Results</p>
-            </Jumbotron>
-            {
-                this.state.articles.map((article, index) => (
-                    <Row key={index}>
-                        <Col fluid size="md-8">
-                            <a data-id={article.nytid} href={article.url} target="_blank">{article.title}</a>
-                            <p>{article.snippet}</p>
-                        </Col>
-                        <Col size="md-4">
-                            <SaveButton onClick={() => this.saveArticle(article) }>
-                                Save
-                            </SaveButton>
-                        </Col>
-                    </Row>
-                ))}
-        </Container>
+                <Jumbotron>
+                    <p>Search Results</p>
+                </Jumbotron>
+                {
+                    this.state.articles.map((article, index) =>
+                        (
+                            <div>
+                            <Row key={index}>
+                                <Col fluid size="md-8">
+                                    <a data-id={article.nytid} href={article.url} target="_blank">{article.title}</a>
+                                    <p>{article.snippet}</p>
+                                </Col>
+                                <Col size="md-4">
+                                    <SaveButton onClick={() => this.saveArticle(article)}>
+                                        Save
+                                    </SaveButton>
+                                </Col>
+                            </Row>
+                            <hr/>
+                            </div>
+                        )
+                    )
+                }
+            </Container>
         );
     }
 }
