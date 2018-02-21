@@ -3,7 +3,7 @@ import "./SearchBar.css";
 import API from "../../utils/API";
 import {Input, SearchButton} from "../../components/SearchForms";
 
-class Search extends Component {
+class SearchBar extends Component {
     constructor(props) {
         super(props);
 
@@ -103,4 +103,4 @@ class Search extends Component {
 
 }
 
-export default Search;
+export default SearchBar;

@@ -10,9 +10,21 @@ class SavedArticles extends Component {
         super(props);
 
         this.state = {
-            articles: []
+            savedArticles: []
         };
     }
+    componentWillMount() {
+        this.loadSavedArticles();
+    }
+
+    loadSavedArticles = () => {
+        console.log("... loading saved articles =====>");
+        API.getArticles()
+            .then(res => {
+                this.setState({savedArticles: res.data});
+            })
+            .catch(err => console.log(err));
+    };
 
     render() {
         return (
