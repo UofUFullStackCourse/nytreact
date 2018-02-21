@@ -13,15 +13,16 @@ class SearchBar extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.loadSavedArticles();
     }
 
     loadSavedArticles = () => {
-        console.log("... loading saved articles =====>");
+        //console.log("... loading saved articles =====>");
         API.getArticles()
             .then(res => {
                 this.setState({savedArticles: res.data});
+                this.props.callSavedArticles(res.data);
             })
             .catch(err => console.log(err));
     };

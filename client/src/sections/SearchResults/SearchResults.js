@@ -18,10 +18,19 @@ class SearchResults extends Component {
         this.setState({articles: nextProps.searchResults});
     }
 
+    loadSavedArticles = () => {
+        //console.log("... loading saved articles =====>");
+        API.getArticles()
+            .then(res => {
+                this.props.callSavedArticles(res.data);
+            })
+            .catch(err => console.log(err));
+    };
+
 
     saveArticle(article) {
-        console.log("... clicked saving article:");
-        console.log(article);
+        //console.log("... clicked saving article:");
+        //console.log(article);
         let arts = this.state.articles;
         let index = arts.indexOf(article);
         if (index > -1) {
@@ -30,6 +39,7 @@ class SearchResults extends Component {
         API.saveArticle(article)
             .then(res => {
                 this.setState({articles: arts});
+                this.loadSavedArticles();
             })
             .catch(err => console.log(err));
     }
@@ -54,7 +64,8 @@ class SearchResults extends Component {
                         </Col>
                     </Row>
                 ))}
-        </Container>);
+        </Container>
+        );
     }
 }
 

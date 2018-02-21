@@ -11,7 +11,8 @@ class App extends Component {
         super(props);
 
         this.state = {
-            searchedArticles: []
+            searchedArticles: [],
+            savedArticles: []
         }
     }
 
@@ -20,15 +21,20 @@ class App extends Component {
         this.setState({searchedArticles: results})
     };
 
+    getSaved = (results) => {
+        //console.log("... in myCallback with: " + results);
+        this.setState({savedArticles: results})
+    };
+
     render() {
         return (
             <div>
                 <Jumbotron>
                     <p>NYT Article Search and Save</p>
                 </Jumbotron>
-                <SearchBar callbackFromParent={this.getResults}/>
-                <SearchResults searchResults={this.state.searchedArticles}/>
-                <SavedArticles/>
+                <SearchBar callbackFromParent={this.getResults} callSavedArticles={this.getSaved} />
+                <SearchResults searchResults={this.state.searchedArticles} callSavedArticles={this.getSaved}/>
+                <SavedArticles savedArticles={this.state.savedArticles}/>
             </div>
         );
     }
