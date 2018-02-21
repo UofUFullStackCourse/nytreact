@@ -46,8 +46,8 @@ class SavedArticles extends Component {
                 {
                     this.state.savedArticles.map((article, index) =>
                         (
-                            <div>
-                                <Row key={index}>
+                            <div key={index}>
+                                <Row>
                                     <Col fluid size="md-8">
                                         <a data-id={article.nytid} href={article.url}
                                            target="_blank">{article.title}</a>
@@ -59,11 +59,17 @@ class SavedArticles extends Component {
                                         </RemoveButton>
                                     </Col>
                                 </Row>
-                                <Row>
-                                    <Col fluid size="md-12">
-                                        <p>{article.notes.length} 123</p>
-                                    </Col>
-                                </Row>
+                                {
+                                    article.notes.map((note, nindex) =>
+                                        (
+                                            <Row>
+                                                <Col fluid size="md-12">
+                                                    note
+                                                </Col>
+                                            </Row>
+
+                                        ))
+                                }
                             </div>
                         )
                     )
