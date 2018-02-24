@@ -64,7 +64,7 @@ class SavedArticles extends Component {
                                         (
                                             <Row>
                                                 <Col fluid size="md-12">
-                                                    note
+                                                    {note.body}
                                                 </Col>
                                             </Row>
 

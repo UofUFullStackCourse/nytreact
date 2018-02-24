@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const notesController = require("../../controllers/notesController");
+const articlesController = require("../../controllers/articlesController");
 
 // Matches with "/api/notes"
 router.route("/")
@@ -8,7 +9,7 @@ router.route("/")
 // Matches with "/api/notes/:id"
 router
     .route("/:id")
-    .post(notesController.create)
+    .post(articlesController.addNote)
     .get(notesController.findById)
     .put(notesController.update)
     .delete(notesController.remove);
